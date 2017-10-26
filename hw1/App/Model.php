@@ -26,14 +26,13 @@ abstract class Model
         return $res;
     }
     
-    public static function findLast($num)
+    public static function findLast($limit=1)
     {
         $db = new Db();
         //echo 'SELECT * FROM '.static::TABLE.' ORDER BY id DESC LIMIT '.$num;
         $res = $db->query(
-            'SELECT * FROM '.static::TABLE.' ORDER BY id DESC LIMIT :number',
-            static::class,
-            ['number' => $num]
+            'SELECT * FROM '.static::TABLE.' ORDER BY id DESC LIMIT '.$limit,
+            static::class
         );
         //var_dump($res);
         return $res;

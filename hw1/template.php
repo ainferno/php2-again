@@ -15,10 +15,10 @@
 
 <div class="container">
 <?php if(isset($news)) { foreach($news as $article) { ?>
-<a href="<?php echo __DIR__; ?>/article.php?id=<?php echo $article['id']; ?>">
+<a href="article.php?id=<?php echo $article->id; ?>">
 <div class="card">
-    <div class="card-header"><?php echo $article['Head'].':'; ?></div>
-    <div class="card-body"><?php echo ' '.$article['Title']; ?><br><br></div>
+    <div class="card-header"><?php echo $article->Name.':'; ?></div>
+    <div class="card-body"><?php echo ' '.$article->Body; ?><br><br></div>
 </div>
 </a>
 <?php }} ?>

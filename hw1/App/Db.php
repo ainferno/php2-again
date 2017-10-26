@@ -10,7 +10,8 @@ class Db
 
     public function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=127.0.0.1;dbname=news', 'root', '');
+        $data = include 'config.php';
+        $this->dbh = new \PDO('mysql:host='.$data['host'].';dbname='.$data['tablename'], $data['user'], $data['password']);
     }
 
     public function execute($sql,$data=[])
@@ -22,12 +23,12 @@ class Db
 
     public function query($sql, $class, $data=[])
     {
-        var_dump($sql);
-        var_dump($data);
+        //var_dump($sql);
+        //var_dump($data);
         $sth = $this->dbh->prepare($sql);
-        var_dump($sth);
+        //var_dump($sth);
         $res = $sth->execute($data);
-        var_dump($res);
+        //var_dump($res);
         if (false !== $res) {
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         }
