@@ -14,14 +14,14 @@
 <body>
 
 <div class="container">
-    <?php if(isset($news)) { foreach($news as $article) { ?>
-    <a href="article.php?id=<?php echo $article->id; ?>">
+    <?php foreach($this->news as $article) { ?>
         <div class="card">
-            <div class="card-header"><?php echo $article->Name.':'; ?></div>
-            <div class="card-body"><?php echo ' '.$article->Title; ?><br><br></div>
+            <a href="article.php?id=<?php echo $article->id; ?>"><div class="card-header"><?php echo $article->Name; ?></div></a>
+            <div class="card-body"><?php echo ' '.$article->Title; ?></div>
+            <div class="card-body">Автор: <?php echo ' '.$article->author()->Name; ?></div>
         </div>
-    </a>
-    <?php }} ?>
+    
+    <?php } ?>
 
 <p>Добавить новость:<p>
 <div class="form-group">
@@ -30,6 +30,11 @@
     <p>Название: <div class="form-group"><input type="text" name="Name" class="form-control"></div><p>
     <p>Заголовок: <div class="form-group"><input type="text" name="Title" class="form-control"></div><p>
     <p>Текст: <div class="form-group"><input type="text" name="Body" class="form-control"></div><p>
+    <select name='author_id'>
+        <?php foreach($this->authors as $author) { ?>
+            <option value='<?php echo $author->id; ?>'><?php echo $author->Name; ?></option>
+        <?php } ?>
+    </select>
     <div class="form-group"><input type="submit" class="btn btn-primary"></div>
 </form>
 </div>
